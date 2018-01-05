@@ -8,8 +8,9 @@
 # It uses AppleScript and for the rest it is almost entirely based on
 # the to-do widget by Rich Somerfield (thank you)
 
-RemindersList  = 'Test' # This is the only list whose Reminders will be listed
-MaxDaytimeHour = '25'   # Hour of day (24h format) at and after which... rest!
+RemindersList  = 'ThisWeek' # This is the only list whose Reminders will be listed
+MaxDaytimeHour = '19'   # Hour of day (24h format) at and after which... rest!
+MinDaytimeHour = '7'    # Hour of day (24h format) at and after which... start!
 # Set the above variable to 25 if ...you never sleep!
 
 todolistfile  = 'daytime-to-do-list/todolist.txt'
@@ -22,7 +23,8 @@ cmd1           = 'daytime-to-do-list/pReminders_todo'
 cmd2           = 'daytime-to-do-list/pReminders_done'
 # Short cut ot invoke my AppleScript that extracts Reminders from a List
 
-command:"H=$(date +%H) && if (( 10#$H < #{MaxDaytimeHour})); then >#{todolistfile} && #{cmd1} #{RemindersList} >>#{todolistfile} && #{cmd2} #{RemindersList} >>#{todolistfile}; else >#{todolistfile}; fi && cat #{todolistfile} | awk 'BEGIN {print \"<ol>\"} /^[-]/ {print \"<li>\"substr($0,2)\"</li>\"} /^[+]/ {print \"<li class=\\\"completed\\\">\"substr($0,2)\"</li>\"} END {print \"</ol>\"}'"
+#command:"H=$(date +%H) && if (( 10#$H < #{MaxDaytimeHour})); then >#{todolistfile} && #{cmd1} #{RemindersList} >>#{todolistfile} && #{cmd2} #{RemindersList} >>#{todolistfile}; else >#{todolistfile}; fi && cat #{todolistfile} | awk 'BEGIN {print \"<ol>\"} /^[-]/ {print \"<li>\"substr($0,2)\"</li>\"} /^[+]/ {print \"<li class=\\\"completed\\\">\"substr($0,2)\"</li>\"} END {print \"</ol>\"}'"
+command:"H=$(date +%H) && if (( #{MinDaytimeHour} <= 10#$H && 10#$H < #{MaxDaytimeHour} )); then >#{todolistfile} && #{cmd1} #{RemindersList} >>#{todolistfile} && #{cmd2} #{RemindersList} >>#{todolistfile}; else >#{todolistfile}; fi && cat #{todolistfile} | awk 'BEGIN {print \"<ol>\"} /^[-]/ {print \"<li>\"substr($0,2)\"</li>\"} /^[+]/ {print \"<li class=\\\"completed\\\">\"substr($0,2)\"</li>\"} END {print \"</ol>\"}'"
 
 refreshFrequency: '60s'
 
