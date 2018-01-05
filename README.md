@@ -21,12 +21,12 @@ ad-hoc Reminder list called e.g. GTDthisWeek, by adding new tasks or moving/revi
 existing tasks from other lists or sources.
 
 As opposed to other Übersicht's widgets out there, after a given time of the day,
-the list displayed becomes empty, so that... I can follows my own philosophy of
-having a sound sleep without worries at night! Having 24/7 my ToDos in front of
-you might become overwhelming.
+the list displayed becomes empty, so that... I can follow my own philosophy and
+have a sound sleep without worries at night! Having 24/7 my ToDos in front of
+me might become a bit overwhelming.
 
-The widget gets placed centered on the left/middle side of your desktop.
-Feel free to adjust it, dissect it, modify it. ;-)
+The widget gets placed on the left side of your desktop.
+Feel free to adjust, dissect, modify it. ;-)
 
 This is my very first attempt at CoffeeScripts and Widget and I do hope my
 exploration might be of interest by others.
